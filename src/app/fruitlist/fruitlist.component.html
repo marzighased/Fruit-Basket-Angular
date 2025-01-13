@@ -1,0 +1,55 @@
+<div class="fruitlist_content">
+    @for(item of fruitlist; track item.name){
+        <section class="singleFruitBox">
+            <div>
+                @if(item.stars < 3){
+                    <img src="./../../assets/img/fruits/{{item.img}}" alt="" srcset="">
+                } @else {
+                    fruit fehlt
+                }
+            </div>
+            <div>
+                <h2> {{item.name}}</h2>
+                <div>
+                    <p><b>Bewertung:</b></p>
+                    <div>
+
+                        @for(count of [1,2,3,4,5]; track fruitlist){
+                            
+                            @if(item.stars >= count){
+                                <img src="./../../assets/img/stars/star.svg" alt="" srcset="">
+                            } @else if (item.stars >= count - 0.5) {
+                                <img src="./../../assets/img/stars/star-half.svg" alt="" srcset="">
+                            } @else {
+                                <img src="./../../assets/img/stars/star-empty.svg" alt="" srcset="">
+                            }
+                        }
+
+                        <!--
+                        <img src="./../../assets/img/stars/star.svg" alt="" srcset="">
+                        <img src="./../../assets/img/stars/star.svg" alt="" srcset="">
+                        <img src="./../../assets/img/stars/star.svg" alt="" srcset="">
+                        <img src="./../../assets/img/stars/star-half.svg" alt="" srcset="">
+                        <img src="./../../assets/img/stars/star-empty.svg" alt="" srcset="">
+                        -->
+                        <p [ngStyle]="{color: 'green'}">({{item.stars}})</p>
+                    </div>
+                </div>
+                <div><b>Art:</b><br>{{item.genus}}</div>
+                <div><b>Beschreibung:</b><br>{{item.description}}</div>
+                <div>
+                    <div>
+                        @for(review of item.reviews; track review){
+                            <div><b>{{review.name}}:</b><br>{{review.text}}</div>
+                        }@empty {
+                            no comments 
+                        }
+                        
+                    </div>
+                    <div><input type="text"><button><img src="./../../assets/img/arrow-35-32.png" alt="" srcset=""></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</div>
